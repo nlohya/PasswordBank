@@ -45,6 +45,10 @@ public class PasswordBank {
                     generatePassword(scanner);
                     break;
                 }
+                case 2: {
+                    retrievePassword(scanner);
+                    break;
+                }
                 case 3: {
                     System.out.println("À bientôt...");
                     appRunning = false;
@@ -56,6 +60,20 @@ public class PasswordBank {
                     break;
                 }
             }
+        }
+    }
+
+    private static void retrievePassword(Scanner scanner) {
+        System.out.println("Choisissez le nom du mot de passe à récupérer :");
+        String passName = scanner.nextLine();
+
+        String password = FileManager.readPassword(passName);
+
+        if (password != null) {
+            System.out.println("Votre mot de passe :");
+            System.out.println(password);
+        } else {
+            System.out.println("Le mot de passe spécifié n'a pas été trouvé");
         }
     }
 

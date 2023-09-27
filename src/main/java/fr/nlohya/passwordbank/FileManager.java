@@ -51,4 +51,17 @@ public class FileManager {
         fileWriter.flush();
     }
 
+    public static String readPassword(String passName) {
+        JSONParser parser = new JSONParser();
+
+        FileReader fileReader = null;
+
+        try {
+            fileReader = new FileReader(FILENAME);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
 }
