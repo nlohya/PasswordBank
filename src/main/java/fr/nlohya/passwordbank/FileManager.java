@@ -55,7 +55,7 @@ public class FileManager {
     public static String readPassword(String passName) {
         JSONParser parser = new JSONParser();
 
-        AtomicReference<String> retPass = null;
+        AtomicReference<String> retPass = new AtomicReference<>();
 
         FileReader fileReader = null;
 
