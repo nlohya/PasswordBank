@@ -41,24 +41,13 @@ public class PasswordBank {
             }
 
             switch (choiceValue) {
-                case 1: {
-                    generatePassword(scanner);
-                    break;
-                }
-                case 2: {
-                    retrievePassword(scanner);
-                    break;
-                }
-                case 3: {
+                case 1 -> generatePassword(scanner);
+                case 2 -> retrievePassword(scanner);
+                case 3 -> {
                     System.out.println("À bientôt...");
                     appRunning = false;
-                    break;
                 }
-
-                default: {
-                    System.out.println("Choix éronné... Veuillez rééssayer.");
-                    break;
-                }
+                default -> System.out.println("Choix éronné... Veuillez rééssayer.");
             }
         }
     }
