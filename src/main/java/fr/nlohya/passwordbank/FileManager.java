@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FileManager {
 
@@ -54,14 +55,27 @@ public class FileManager {
     public static String readPassword(String passName) {
         JSONParser parser = new JSONParser();
 
+        AtomicReference<String> retPass = null;
+
         FileReader fileReader = null;
 
         try {
             fileReader = new FileReader(FILENAME);
-        } catch (IOException e) {
+
+            JSONArray readJson = (JSONArray) parser.parse(fileReader);
+            readJson.forEach(jsonObj -> {
+                try {
+                    JSONObject jsonObject = (JSONObject) parser.parse(jsonObj.toString());
+                    retPass.set(jsonObject.get(passName).toString());
+                } catch (Exception ignored) {}
+            });
+        } catch (IOException | ParseException e) {
             System.out.println(e.getMessage());
         }
-
-        return null;
+        try {
+            return retPass.get();
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 }
